@@ -1,0 +1,7 @@
+
+@theme "/usr/share/rofi/themes/sidebar.rasi"
+
+configuration {
+    modes: "window,drun,filebrowser";
+    font: "Fira Code NerdFont 10";
+}
