@@ -110,3 +110,13 @@ function y() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	command rm -f -- "$tmp"
 }
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/jj/.juliaup/bin' $path)
+export PATH
+# Tab completion for juliaup and julia channel selection
+[ -f "/home/jj/.julia/juliaup/completions/zsh.zsh" ] && source "/home/jj/.julia/juliaup/completions/zsh.zsh"
+
+# <<< juliaup initialize <<<

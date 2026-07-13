@@ -64,7 +64,8 @@
     "network": {
         "format-wifi": "{signalStrength} ",
         "format-ethernet": "",
-        "format-disconnected": "⚠"
+        "format-disconnected": "⚠",
+        "tooltip-format": "{essid} via {gwaddr}"
     },
 
     "pulseaudio": {
