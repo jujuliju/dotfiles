@@ -1,10 +1,11 @@
 {
-    "height": 30,
+    // "height": 30,
     "spacing": 4,
 
     "modules-left": [
-        "ext/workspaces",
-        "dwl/window"
+        "mango/layout",
+        "mango/workspaces",
+        "mango/window"
     ],
 
     "modules-center": [
@@ -17,18 +18,39 @@
         "cpu",
         "memory",
         "temperature",
-        "battery",
-        "tray"
+        // "battery",
+        "tray",
+        "custom/notification"
     ],
 
-    "ext/workspaces": {
+    "custom/notification": {
+        "tooltip": false,
+        "format": "<span font='16px'>{icon}</span>",
+        "format-icons": {
+        "notification": "󱅫",
+        "none": "󰂚",
+        "dnd-notification": "",
+        "dnd-none": ""
+        },
+
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "mango/workspaces": {
         "format": "{icon}",
         "ignore-hidden": true,
         "on-click": "activate",
-        "sort-by-id": true
+        "sort-by-id": true,
+        "hide-empty": true,
+        "on-click-right": "toggle"
     },
 
-    "dwl/window": {
+    "mango/window": {
         "format": "{title}"
     },
 

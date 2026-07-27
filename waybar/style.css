@@ -1,6 +1,6 @@
 * {
-    font-family: "FiraCode Nerd Font";
-    font-size: 13px;
+    font-family: "FiraCode Nerd Font", "Fira Code Nerd Font", "FiraCode NF", monospace;
+    font-size: 12px;
     border: none;
     border-radius: 0;
     min-height: 0;
@@ -26,7 +26,7 @@ window#waybar {
     background: rgba(255, 255, 255, 0.08);
 }
 
-#window {
+#mango-window {
     padding: 0 10px;
     color: #dddddd;
 }
@@ -47,5 +47,5 @@ window#waybar {
 }
 
 #clock {
-    font-size: 16px;
+    font-size: 14px;
 }
