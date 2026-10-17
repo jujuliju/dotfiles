@@ -1,12 +1,18 @@
 local map = vim.keymap.set
 
--- Reset to center of screen on movement
-map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+-- Wrap a telescope picker so telescope is only loaded when the key is used
+local function telescope(picker, opts)
+    return function()
+        require("telescope.builtin")[picker](opts)
+    end
+end
 
-map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+-- Reset to center of screen on movement
+map("n", "<C-d>", "<C-d>zz", { silent = true })
+map("n", "<C-u>", "<C-u>zz", { silent = true })
 
 -- Exit insert softly with Ctrl + c
-map("i", "<C-c>", "<Esc>", { noremap = true, silent = true })
+map("i", "<C-c>", "<Esc>", { silent = true })
 
 -- Close highlighting when searching
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -18,12 +24,20 @@ map(
     { desc = "Show diagnostic [E]rror messages" }
 )
 
-local builtin = require("telescope.builtin")
-map("n", "<leader>sf", builtin.find_files, { desc = "Telescope find files" })
-map("n", "<leader>sg", builtin.live_grep, { desc = "Telescope live grep" })
-map("n", "<leader>sn", function()
-    builtin.find_files({ cwd = vim.fn.stdpath("config") })
-end, { desc = "Telescope search config" })
+-- Telescope
+map(
+    "n",
+    "<leader>sf",
+    telescope("find_files"),
+    { desc = "Telescope find files" }
+)
+map("n", "<leader>sg", telescope("live_grep"), { desc = "Telescope live grep" })
+map(
+    "n",
+    "<leader>sn",
+    telescope("find_files", { cwd = vim.fn.stdpath("config") }),
+    { desc = "Telescope search config" }
+)
 map(
     "n",
     "<leader>sc",
@@ -31,13 +45,10 @@ map(
     { desc = "Telescope search comments" }
 )
 
-map("n", "<leader>f", function()
-    require("conform").format({ lsp_fallback = true })
-end, { desc = "Format with Conform" })
-
 -- Sudo write
 vim.cmd.cnoreabbrev("w!! SudoWrite")
 
+-- Trouble
 map(
     "n",
     "<leader>xx",
@@ -75,7 +86,7 @@ map(
     { desc = "Quickfix List" }
 )
 
--- COMPETETIVE PROGRAMMING
+-- COMPETITIVE PROGRAMMING
 map("n", "<leader>cp", function()
     local template = [[#include <bits/stdc++.h>
 using namespace std;
@@ -87,3 +98,5 @@ int main() {
 ]]
     vim.api.nvim_put(vim.split(template, "\n"), "l", true, true)
 end, { desc = "Paste C++ CP template" })
+
+-- Formatting lives in plugins/lsp.lua (conform's `keys`): <leader>f

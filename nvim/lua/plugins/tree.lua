@@ -12,7 +12,7 @@ return {
             {
                 "\\",
                 ":Neotree reveal position=current<CR>",
-                { desc = "NeoTree reveal" },
+                desc = "NeoTree reveal",
             },
         },
         opts = {
@@ -26,4 +26,3 @@ return {
         },
     },
 }
-

@@ -1,10 +1,19 @@
 return {
-    {
+    { -- Needs setup() to do anything, `config = true` calls it
         "akinsho/git-conflict.nvim",
+        config = true,
     },
 
     {
         "sindrets/diffview.nvim",
+        cmd = {
+            "DiffviewOpen",
+            "DiffviewClose",
+            "DiffviewToggleFiles",
+            "DiffviewFocusFiles",
+            "DiffviewRefresh",
+            "DiffviewFileHistory",
+        },
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons",

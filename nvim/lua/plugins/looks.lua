@@ -2,12 +2,12 @@ return {
     {
         "navarasu/onedark.nvim",
         priority = 1000, -- Load first
-        opts = {
-            style = "dark",
-            transparent = true,
-            code_style = { comments = "italic" },
-        },
-        init = function()
+        config = function()
+            require("onedark").setup({
+                style = "dark",
+                transparent = true,
+                code_style = { comments = "italic" },
+            })
             require("onedark").load()
         end,
     },
@@ -32,17 +32,6 @@ return {
     },
 
     "tpope/vim-sleuth", -- Tab detection
-
-    {
-        "echasnovski/mini.statusline",
-        config = function()
-            local statusline = require("mini.statusline")
-            statusline.setup({ use_icons = true })
-            statusline.section_location = function()
-                return "%2l:%-2v"
-            end
-        end,
-    },
 
     {
         "MeanderingProgrammer/render-markdown.nvim",

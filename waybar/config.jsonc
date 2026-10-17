@@ -3,7 +3,6 @@
     "spacing": 4,
 
     "modules-left": [
-        "mango/layout",
         "mango/workspaces",
         "mango/window"
     ],

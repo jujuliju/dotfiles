@@ -1,14 +1,11 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
+        -- Not the stale 0.1.x branch: it breaks previews with current
+        -- nvim-treesitter (attempt to call field 'ft_to_lang').
+        branch = "master",
+        cmd = "Telescope",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("telescope").setup({
-                defaults = {
-                    preview = { treesitter = false },
-                },
-            })
-        end,
+        opts = {},
     },
 }

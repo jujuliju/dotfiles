@@ -2,12 +2,13 @@ return {
     { -- Shows pending keybinds
         "folke/which-key.nvim",
         event = "VimEnter",
-        config = function()
-            require("which-key").setup()
-
-            require("which-key").add({
+        opts = {
+            spec = {
                 { "<leader>s", group = "[S]earch" },
-            })
-        end,
+                { "<leader>c", group = "[C]ode" },
+                { "<leader>x", group = "Diagnostics" },
+                { "<leader>t", group = "[T]oggle" },
+            },
+        },
     },
 }
