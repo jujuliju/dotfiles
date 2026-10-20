@@ -286,20 +286,4 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {},
     },
-
-    {
-        "supermaven-inc/supermaven-nvim",
-        config = function()
-            require("supermaven-nvim").setup({})
-        end,
-        keymaps = {
-            accept_suggestion = "<Tab>",
-            clear_suggestion = "<C-]>",
-            accept_word = "<C-j>",
-        },
-        color = {
-            suggestion_color = "#b48ead",
-            cterm = 244,
-        },
-    },
 }
