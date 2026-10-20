@@ -1,42 +1,31 @@
--- return {
---     "nvim-treesitter/nvim-treesitter",
---     branch = "main",
---     build = ":TSUpdate",
---     config = function()
---         local configs = require("nvim-treesitter.configs")
---
---         configs.setup({
---             ensure_installed = {
---                 "bash",
---                 "lua",
---                 "luadoc",
---                 "html",
---                 "css",
---                 "javascript",
---                 "tsx",
---                 "svelte",
---                 "jsdoc",
---                 "json",
---                 "markdown",
---                 "markdown_inline",
---             },
---             auto_install = true,
---             highlight = { enable = true },
---             indent = { enable = true },
---         })
---     end,
--- }
-
 return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     lazy = false,
     build = ":TSUpdate",
     init = function()
+        -- Needs the `tree-sitter` CLI and a C compiler to build parsers.
         local ensure_installed = {
-            "bash",
+            -- Languages with an LSP server in plugins/lsp.lua
+            "c",
+            "cpp",
+            "python",
             "lua",
             "luadoc",
+            "julia",
+            "ocaml",
+            "ocaml_interface",
+
+            -- Config and markup
+            "bash",
+            "json",
+            "markdown",
+            "markdown_inline",
+            "vim",
+            "vimdoc",
+            "query",
+
+            -- Web and Go (not used by any LSP yet)
             "html",
             "css",
             "javascript",
@@ -44,15 +33,7 @@ return {
             "tsx",
             "svelte",
             "jsdoc",
-            "json",
-            "markdown",
-            "markdown_inline",
-            "vim",
-            "vimdoc",
-            "query",
             "go",
-            "c",
-            "cpp",
         }
 
         local installed = require("nvim-treesitter.config").get_installed()
@@ -66,10 +47,12 @@ return {
         end
 
         vim.api.nvim_create_autocmd("FileType", {
-            callback = function()
-                pcall(vim.treesitter.start)
-                vim.bo.indentexpr =
-                    "v:lua.require'nvim-treesitter'.indentexpr()"
+            callback = function(ev)
+                -- Only use treesitter indenting where a parser actually started
+                if pcall(vim.treesitter.start, ev.buf) then
+                    vim.bo[ev.buf].indentexpr =
+                        "v:lua.require'nvim-treesitter'.indentexpr()"
+                end
             end,
         })
     end,

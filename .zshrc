@@ -78,6 +78,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+export EDITOR="nvim"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -121,3 +122,12 @@ export PATH
 [ -f "/home/jj/.julia/juliaup/completions/zsh.zsh" ] && source "/home/jj/.julia/juliaup/completions/zsh.zsh"
 
 # <<< juliaup initialize <<<
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/jj/.opam/opam-init/init.zsh' ]] || source '/home/jj/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
